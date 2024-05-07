@@ -9,8 +9,9 @@ interface FloorProps {
 class Floor extends Component<FloorProps> {
   render() {
     const { floorNumber } = this.props;
-    return (
+    return (  
       <div className="floor">
+        
         <ElevatorButton number={floorNumber} />
       </div>
     );

@@ -6,12 +6,16 @@ interface ElevatorButtonProps {
 }
 
 class ElevatorButton extends Component<ElevatorButtonProps> {
+  constructor(props: ElevatorButtonProps) {
+    super(props);
+  }
+
   render() {
     const { number } = this.props; // Destructure number from props
     return (
-      <div className="metal linear">
-        {number} {/* Display the number inside the button */}
-      </div>
+      <button  className="metal linear">
+        {number} {}
+      </button>
     );
   }
 }

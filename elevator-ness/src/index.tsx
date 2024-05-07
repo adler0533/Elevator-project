@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-import YourComponent from './App.tsx';
+import Building from './Building.tsx';
 import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      <YourComponent totalFloors={7} />
+      <Building totalFloors={30} totalElevators = {2} />
     </React.StrictMode>,
     rootElement
   );

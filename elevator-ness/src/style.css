@@ -1,12 +1,37 @@
 
+.container {
+  width: auto; /* Set width to 100% of viewport width */
+  height: auto; /* Set height to 100% of viewport height */
+  display: flex; /* Use flexbox for layout */
+  /* justify-content: flex-start; */
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.building-container {
+  
+  /* justify-content: flex-end;  */
+  display: flex;
+  flex-direction: row;
+}
+
+.floor-container {
+  
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column-reverse;
+
+}
+
+
 .floor {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   width: 200px; /* Adjust the width as needed */
-  height: 100px; /* Adjust the height as needed */
-  margin-left: 10px;
-  margin-top: 10px;
+  height: 110px; /* Adjust the height as needed */
   background-color: silver;
   background-image: linear-gradient(335deg, #b00 23px, transparent 23px), 
                     linear-gradient(155deg, #d00 23px, transparent 23px), 
@@ -15,6 +40,20 @@
   background-size: 58px 58px;
   background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
 }
+
+.elevator-container {
+  width: 100px; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: flex; /* Use flexbox for positioning */
+  flex-direction: row; /* Stack items vertically */
+  align-items: flex-end; /* Center items horizontally */
+}
+
+.elevator {
+  max-width: 100px; /* Ensure the image fits within the container */
+  height: 100px; /* Maintain aspect ratio */
+}
+
 
 
 
@@ -79,13 +118,14 @@
 /* Linear ------------------------- */
 .metal.linear {
   width: 70px;
-  font-size: 2.5em;
+  font-size: 2em;
   height: 50px;
-  border-radius: .5em;
+  border-radius: .6em;
   background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%, .1) 7.5%), 
                     -webkit-repeating-linear-gradient(left, hsla(0,0%, 0%,0) 0%, hsla(0,0%, 0%,0) 4%, hsla(0,0%, 0%,.03) 4.5%), 
                     -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%), 
                     linear-gradient(180deg, hsl(0,0%,78%) 0%, hsl(0,0%,90%) 47%, hsl(0,0%,78%) 53%, hsl(0,0%,70%)100%);
+  cursor: pointer;
 }
 
 /* Oval ------------------------- */
@@ -114,4 +154,9 @@
               hsla(210,100%,75%, .8) 0 0px 3px 2px, /* outer SD */
               hsla(210,50%,40%, .0) 0 -5px 6px 4px, /* outer SD */
               hsla(210,80%,95%, 0) 0 5px 6px 4px; /* outer HL */
+}
+
+.blackline {
+height: 7px;
+background-color: #000000;
 }
