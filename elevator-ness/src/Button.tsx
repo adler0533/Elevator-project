@@ -1,23 +1,14 @@
-import React, { Component } from 'react';
-import './style.css'; // Import your CSS file for styling
+import React from 'react';
+import './style.css';
 
 interface ElevatorButtonProps {
-  number: number; // Define the prop type
+  floorNumber: number;
 }
 
-class ElevatorButton extends Component<ElevatorButtonProps> {
-  constructor(props: ElevatorButtonProps) {
-    super(props);
-  }
-
-  render() {
-    const { number } = this.props; // Destructure number from props
-    return (
-      <button  className="metal linear">
-        {number} {}
-      </button>
-    );
-  }
+const ElevatorButton: React.FC<ElevatorButtonProps> = ({ floorNumber }) => {
+  return (
+    <button className="metal linear">{floorNumber}</button>
+  );
 }
 
 export default ElevatorButton;

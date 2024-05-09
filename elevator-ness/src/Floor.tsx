@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './style.css';
 import ElevatorButton from './Button.tsx';
 
@@ -6,16 +6,12 @@ interface FloorProps {
   floorNumber: number; // Define the prop type for floorNumber
 }
 
-class Floor extends Component<FloorProps> {
-  render() {
-    const { floorNumber } = this.props;
-    return (  
-      <div className="floor">
-        
-        <ElevatorButton number={floorNumber} />
-      </div>
-    );
-  }
+const Floor: React.FC<FloorProps> = ({ floorNumber }) => {
+  return (
+    <div className="floor">
+      <ElevatorButton floorNumber={floorNumber} />
+    </div>
+  );
 }
 
 export default Floor;

@@ -1,0 +1,31 @@
+┌───────────────────┐
+│     Building       │
+│────────────────────│
+│- totalFloors: number
+│- totalElevators: number
+│────────────────────│
+│+ callElevator(floorNumber: number): void
+│+ render(): JSX.Element
+└───────┬─────────────┘
+        │
+        │contains
+        ┌───────────────────--┐
+        │                     │
+┌───────┴───────┐       ┌───────┴───────┐
+│    Floor      │       │   Elevator    │
+│───────────────│       │───────────────│
+│- floorNumber: number  │- ElevatorNumber: number
+│───────────────│       │- position: number
+│+ render(): JSX.Element│───────────────│
+└───────────────┘       │+ handleClick(): void
+                        │+ render(): JSX.Element
+                        └───────────────┘
+                            │contains
+                            │
+                    ┌───────┴───────┐
+                    │ElevatorButton │
+                    │───────────────│
+                    │- floorNumber: number
+                    │───────────────│
+                    │+ render(): JSX.Element
+                    └───────────────┘

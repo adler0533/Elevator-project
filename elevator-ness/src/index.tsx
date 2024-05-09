@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 import Building from './Building.tsx';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from './reportWebVitals.js';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      <Building totalFloors={30} totalElevators = {2} />
+      <Building totalFloors={30} totalElevators = {4} />
     </React.StrictMode>,
     rootElement
   );

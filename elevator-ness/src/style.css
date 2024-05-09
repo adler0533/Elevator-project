@@ -14,6 +14,7 @@
   /* justify-content: flex-end;  */
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .floor-container {
@@ -42,17 +43,22 @@
 }
 
 .elevator-container {
-  width: 100px; /* Adjust width as needed */
+  width: auto; /* Adjust width as needed */
   height: auto; /* Maintain aspect ratio */
   display: flex; /* Use flexbox for positioning */
-  flex-direction: row; /* Stack items vertically */
+  flex-direction: row-reverse; /* Stack items vertically */
   align-items: flex-end; /* Center items horizontally */
+  position: relative; /* כדי שהמעלית תהיה תחת התיק */
 }
 
 .elevator {
+  position: relative; /* אנו משתמשים במיקום יחסי כדי להעביר את המעלית */
   max-width: 100px; /* Ensure the image fits within the container */
+  bottom: 0; /* כאן אני מניח שהמעלית תתחיל מהתחתית של התיק, אתה יכול לשנות את זה על פי הצורך */
   height: 100px; /* Maintain aspect ratio */
+  transition: 0.5s;
 }
+
 
 
 
@@ -131,7 +137,7 @@
 /* Oval ------------------------- */
 
 .metal.linear.oval {
-  margin-top: 100px;
+  
   width: 70px;
   height: 60px;
   line-height: 60px !important;
