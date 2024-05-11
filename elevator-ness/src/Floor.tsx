@@ -4,12 +4,17 @@ import ElevatorButton from './Button.tsx';
 
 interface FloorProps {
   floorNumber: number; // Define the prop type for floorNumber
+  handleButtonClick: (floorNumber: number) => void;
+  requestedFloor: number | null;
 }
 
-const Floor: React.FC<FloorProps> = ({ floorNumber }) => {
+const Floor: React.FC<FloorProps> = ({ floorNumber, handleButtonClick, requestedFloor }) => {
   return (
     <div className="floor">
-      <ElevatorButton floorNumber={floorNumber} />
+      <ElevatorButton floorNumber={floorNumber}
+                      handleButtonClick={handleButtonClick}
+                      requestedFloor={requestedFloor} 
+      />
     </div>
   );
 }

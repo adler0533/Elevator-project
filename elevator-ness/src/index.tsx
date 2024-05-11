@@ -8,7 +8,11 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.render(
     <React.StrictMode>
-      <Building totalFloors={30} totalElevators = {4} />
+      <div className='container'>
+      <Building totalFloors={7} totalElevators = {3} />
+      <Building totalFloors={5} totalElevators = {2} />
+      <Building totalFloors={3} totalElevators = {1} />
+      </div>
     </React.StrictMode>,
     rootElement
   );

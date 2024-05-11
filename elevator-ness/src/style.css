@@ -1,12 +1,15 @@
 
 .container {
-  width: auto; /* Set width to 100% of viewport width */
+  width: auto ; /* Set width to 100% of viewport width */
+  min-width: 100%;
   height: auto; /* Set height to 100% of viewport height */
+  min-height: 100vh;
   display: flex; /* Use flexbox for layout */
   /* justify-content: flex-start; */
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  flex-direction: row;
+  /* justify-content: flex-end;
+  align-items: flex-start; */
+  /* border: solid red; */
 }
 
 .building-container {
@@ -15,6 +18,8 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  /* border: solid black; */
+  margin-right: 100px;
 }
 
 .floor-container {
