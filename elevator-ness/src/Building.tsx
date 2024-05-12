@@ -52,8 +52,8 @@ const Building: React.FC<BuildingProps> = ({ totalFloors, totalElevators }) => {
       <Elevator
         key={i}
         ElevatorNumber={i}
-        requestedFloor={requestedFloor}
-        activeElevator={activeElevator}
+        // requestedFloor={requestedFloor}
+        // activeElevator={activeElevator}
         elevatorRequests={elevatorRequests}
         setElevatorRequests={setElevatorRequests}
       />

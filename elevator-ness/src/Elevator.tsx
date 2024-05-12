@@ -3,40 +3,53 @@ import './style.css';
 
 interface ElevatorProps {
   ElevatorNumber: number;
-  requestedFloor: number | null;
-  activeElevator: number | null;
-  elevatorRequests: number[];
+  elevatorRequests: number[]; // נמחקה requestedFloor
   setElevatorRequests: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const Elevator: React.FC<ElevatorProps> = ({
   ElevatorNumber,
-  requestedFloor,
-  activeElevator,
+  // requestedFloor,
   elevatorRequests,
   setElevatorRequests,
 }) => {
   const [position, setPosition] = useState<number>(0);
   const [isMoving, setIsMoving] = useState<boolean>(false);
+  const [destinationFloors, setDestinationFloors] = useState<number[]>([]); // נוספה
+  const dingAudio = new Audio("/ding.mp3"); // נוספה - מתאימים את הנתיב למיקום התיקייה של ding.mp3 בפרויקט
 
   useEffect(() => {
-    if (activeElevator === ElevatorNumber && !isMoving && elevatorRequests.length > 0) {
+    if (!isMoving && elevatorRequests.length > 0) {
       const nextFloor = elevatorRequests[0];
       setPosition(nextFloor);
+      setDestinationFloors((prev) => [...prev, nextFloor]); // נוספה
       setIsMoving(true);
     }
-  }, [activeElevator, isMoving, elevatorRequests, ElevatorNumber]);
+  }, [isMoving, elevatorRequests]);
 
   useEffect(() => {
-    if (isMoving && position === elevatorRequests[0]) {
+    if (isMoving && position === destinationFloors[0]) {
       const timer = setTimeout(() => {
-        setElevatorRequests((prevRequests) => prevRequests.slice(1));
+        setDestinationFloors((prev) => prev.slice(1));
+        setElevatorRequests((prev) => prev.slice(1));
         setIsMoving(false);
-      }, 2000);
+        dingAudio.play(); // נוספה
+      }, 2000); // נשמרה תקינות הזמן
 
       return () => clearTimeout(timer);
     }
-  }, [isMoving, position, elevatorRequests, setElevatorRequests]);
+  }, [isMoving, position, destinationFloors, setElevatorRequests]);
+
+  useEffect(() => {
+    if (destinationFloors.length > 0) {
+      const totalDistance = destinationFloors.reduce(
+        (acc, curr) => acc + Math.abs(curr - position),
+        0
+      );
+      const totalTravelTime = totalDistance * 500; // 500ms per floor
+      // נוסף
+    }
+  }, [position, destinationFloors]);
 
   return (
     <div className='elevator' style={{ bottom: position * 117 }}>
