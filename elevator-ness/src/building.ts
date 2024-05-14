@@ -2,7 +2,6 @@ import Floor from './Floor';
 import Elevator from './Elevator';
 
 
-
 export default class Building {
   floors: Floor[] = [];
   elevators: Elevator[] = [];
@@ -82,9 +81,5 @@ export default class Building {
   };
 }
 
-const B = new Building(10, 3);
-const A = new Building(5, 3);
-const e = new Building(5, 3);
-const t = new Building(5, 3);
-const h = new Building(5, 3);
-const v = new Building(5, 3);
+
+
