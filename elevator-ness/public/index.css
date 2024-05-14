@@ -1,72 +1,55 @@
-
-.container {
-  width: auto ; /* Set width to 100% of viewport width */
-  min-width: 100%;
-  height: auto; /* Set height to 100% of viewport height */
-  min-height: 100vh;
-  display: flex; /* Use flexbox for layout */
-  /* justify-content: flex-start; */
-  flex-direction: row;
-  /* justify-content: flex-end;
-  align-items: flex-start; */
-  /* border: solid red; */
-}
-
-.building-container {
-  
-  /* justify-content: flex-end;  */
+.screen {
+  /* background-color: silver; */
   display: flex;
   flex-direction: row;
-  width: 100%;
-  /* border: solid black; */
+  align-items: end;
+}
+
+.building{
+  display: flex;
+  align-items: flex-end;
   margin-right: 100px;
 }
 
-.floor-container {
-  
-  /* height: 100%; */
+.shaft {
+  height: 100%;
   display: flex;
-  flex-direction: column-reverse;
-
+  flex-direction: row;
+  align-items: end;
+  /* background-color: aquamarine; */
 }
 
+.elevator {
+  width: 110px;
+  height: 110px;
+}
+
+.floors {
+  display: flex;
+  flex-direction: column-reverse;
+}
 
 .floor {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  width: 200px; /* Adjust the width as needed */
-  height: 110px; /* Adjust the height as needed */
+  width: 300px;
+  height: 103px;
   background-color: silver;
-  background-image: linear-gradient(335deg, #b00 23px, transparent 23px), 
-                    linear-gradient(155deg, #d00 23px, transparent 23px), 
-                    linear-gradient(335deg, #b00 23px, transparent 23px), 
-                    linear-gradient(155deg, #d00 23px, transparent 23px);
+  background-image: linear-gradient(335deg, #b00 23px, transparent 23px),
+                      linear-gradient(155deg, #d00 23px, transparent 23px),
+                      linear-gradient(335deg, #b00 23px, transparent 23px),
+                      linear-gradient(155deg, #d00 23px, transparent 23px);
   background-size: 58px 58px;
   background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
 }
 
-.elevator-container {
-  width: auto; /* Adjust width as needed */
-  height: auto; /* Maintain aspect ratio */
-  display: flex; /* Use flexbox for positioning */
-  flex-direction: row-reverse; /* Stack items vertically */
-  align-items: flex-end; /* Center items horizontally */
-  position: relative; /* כדי שהמעלית תהיה תחת התיק */
+.blackline {
+  height: 7px;
+  width: 300px;
+  background-color: #000000;
 }
-
-.elevator {
-  position: relative; /* אנו משתמשים במיקום יחסי כדי להעביר את המעלית */
-  max-width: 100px; /* Ensure the image fits within the container */
-  bottom: 0; /* כאן אני מניח שהמעלית תתחיל מהתחתית של התיק, אתה יכול לשנות את זה על פי הצורך */
-  height: 100px; /* Maintain aspect ratio */
-  transition: 0.5s;
-}
-
-
-
-
 
 .metal {
   position: relative;
@@ -128,21 +111,20 @@
 
 /* Linear ------------------------- */
 .metal.linear {
-  width: 70px;
-  font-size: 2em;
-  height: 50px;
-  border-radius: .6em;
+  width: 100px;
+  font-size: 4em;
+  height: 80px;
+  border-radius: .5em;
   background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%, .1) 7.5%), 
                     -webkit-repeating-linear-gradient(left, hsla(0,0%, 0%,0) 0%, hsla(0,0%, 0%,0) 4%, hsla(0,0%, 0%,.03) 4.5%), 
                     -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%), 
                     linear-gradient(180deg, hsl(0,0%,78%) 0%, hsl(0,0%,90%) 47%, hsl(0,0%,78%) 53%, hsl(0,0%,70%)100%);
-  cursor: pointer;
 }
 
 /* Oval ------------------------- */
 
 .metal.linear.oval {
-  
+  margin-top: 100px;
   width: 70px;
   height: 60px;
   line-height: 60px !important;
@@ -165,9 +147,4 @@
               hsla(210,100%,75%, .8) 0 0px 3px 2px, /* outer SD */
               hsla(210,50%,40%, .0) 0 -5px 6px 4px, /* outer SD */
               hsla(210,80%,95%, 0) 0 5px 6px 4px; /* outer HL */
-}
-
-.blackline {
-height: 7px;
-background-color: #000000;
 }
