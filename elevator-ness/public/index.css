@@ -32,7 +32,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 200px;
   height: 103px;
   background-color: silver;
   background-image: linear-gradient(335deg, #b00 23px, transparent 23px),
@@ -43,9 +43,18 @@
   background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
 }
 
+.timer {
+  /* position: absolute; */
+  background-color: yellow;
+  right: 10px;
+  font-size: 30px;
+  font-weight: normal;
+  color: #555;
+}
+
 .blackline {
   height: 7px;
-  width: 300px;
+  width: 200px;
   background-color: #000000;
 }
 
@@ -109,9 +118,9 @@
 
 /* Linear ------------------------- */
 .metal.linear {
-  width: 100px;
-  font-size: 4em;
-  height: 80px;
+  width: 90px;
+  font-size: 3em;
+  height: 70px;
   border-radius: .5em;
   background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%, .1) 7.5%), 
                     -webkit-repeating-linear-gradient(left, hsla(0,0%, 0%,0) 0%, hsla(0,0%, 0%,0) 4%, hsla(0,0%, 0%,.03) 4.5%), 

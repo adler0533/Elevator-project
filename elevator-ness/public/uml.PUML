@@ -1,0 +1,49 @@
+@startuml elevators
+skinparam titleFontSize 16
+
+title Elevator System Specification
+
+package "Elevator System" {
+    class Building {
+        -floors: Floor[]
+        -elevators: Elevator[]
+        +constructor(numberOfFloors, numberOfElevators)
+        +chooseElevator(floorNum, currentTime): Elevator
+        +callElevator(floorNumber)
+        -freeFloor(floorNumber)
+    }
+
+    class Floor {
+        -floorNumber: number
+        -isWaiting: boolean
+        -floorDiv: HTMLDivElement
+        -lineDiv: HTMLDivElement
+        -button: HTMLButtonElement
+        -expectedElevatorArrivalTime: number | null
+        -timerElement: HTMLSpanElement
+        -timerInterval: ReturnType<typeof setInterval> | null
+        +constructor(floorNum, callElevator)
+        -updateTimer()
+        +startTimer(arrivalTime)
+    }
+
+    class Elevator {
+        -currentFloor: number
+        -ID: number
+        -destination: number
+        -timer: number
+        -elevatorDiv: HTMLImageElement
+        -audio: HTMLAudioElement
+        +constructor(id)
+        +move(floorRequest, freeElevator)
+    }
+
+    Building *-- Floor
+    Building *-- Elevator
+}
+
+Building -> Elevator : chooseElevator()
+Building --> Elevator : callElevator()
+Elevator -> Floor : freeFloor()
+
+@enduml

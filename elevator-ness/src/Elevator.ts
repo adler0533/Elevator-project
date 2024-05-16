@@ -1,7 +1,7 @@
 
 export default class Elevator {
-    currentFloor: number = 0;
     ID: number;
+    currentFloor: number = 0;
     destination: number = 0;
     timer: number = 0;
   
@@ -12,7 +12,7 @@ export default class Elevator {
       this.ID = id;
   
       this.elevatorDiv.src = './elevator.png';
-      this.elevatorDiv.classList.add('elevator');
+      this.elevatorDiv.className = 'elevator';
   
       this.audio.src = './ding.mp3';
       this.audio.controls = true;
@@ -23,13 +23,15 @@ export default class Elevator {
       freeElevator: (floorNumber: number) => void,
     ) => {
       let gap = Math.abs(this.currentFloor - floorRequest);
-      this.currentFloor = floorRequest;
+      console.log("gap" + gap + " floorRequest " + floorRequest);
       this.elevatorDiv.style.transition = `transform ${gap * 0.5}s ease`;
       this.elevatorDiv.style.transform = `translateY(${-floorRequest * 110}px)`;
+      this.currentFloor = floorRequest;
       setTimeout(() => {
+        this.audio.currentTime = 0;
         this.audio.play();
         setTimeout(() => {
-          this.audio.pause();
+          // this.audio.pause();
           freeElevator(floorRequest);
         }, 2000);        
       }, gap * 0.5 * 1000);

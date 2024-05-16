@@ -39,46 +39,50 @@ export default class Building {
     }
   }
 
-  chooseElevator(floorNum: number, currentTime: number): any {
+  chooseElevator(floorNum: number, currentTime: number): Elevator {
     let minTime: number = Infinity;
     let elevatorID: number = 0;
     for (let elevator of this.elevators) {
       const currentMin =
-        Math.abs(elevator.destination - floorNum) * 500 +
-        2000 +
+        (Math.abs(elevator.destination - floorNum)) * 500 +
         (currentTime > elevator.timer ? 0 : elevator.timer - currentTime);
-      console.log('currentMin = ' + currentMin);
+        console.log("currentTime " + currentTime + " " + elevator.destination)
       if (currentMin < minTime) {
         minTime = currentMin;
         elevatorID = elevator.ID;
       }
     }
     const elevator = this.elevators[elevatorID];
-    console.log('elevator ' + elevator.ID);
-
     return elevator;
   }
+  
   callElevator = (floorNumber: number) => {
     let currentTime: number = Date.now();
 
-    const elevator: Elevator = this.chooseElevator(floorNumber, currentTime);
-    console.log('elevator ' + elevator.timer);
-    let gap = Math.abs(elevator.destination - floorNumber);
-    elevator.destination = floorNumber;
-    if (currentTime > elevator.timer) {
-      elevator.move(floorNumber, this.freeFloor);
-      elevator.timer = currentTime + (gap * 0.5 + 2) * 1000;
+    const choosenElevator: Elevator = this.chooseElevator(floorNumber, currentTime);
+    let gap = Math.abs(choosenElevator.destination - floorNumber);
+    const arrivalTime = currentTime + ((gap * 0.5) + 2) * 1000;
+    const totalTime = (arrivalTime)+ (currentTime > choosenElevator.timer ? 0 : choosenElevator.timer - currentTime);
+    choosenElevator.destination = floorNumber;
+    if (currentTime > choosenElevator.timer) {
+      choosenElevator.move(floorNumber, this.freeFloor);
+      choosenElevator.timer = arrivalTime;
     } else {
-      setTimeout(() => {
-        elevator.move(floorNumber, this.freeFloor);
-      }, elevator.timer - currentTime);
-      elevator.timer += (gap * 0.5 + 2) * 1000;
+      console.log("timeout " + ((choosenElevator.timer - currentTime)/1000) )
+        setTimeout(() => {
+          choosenElevator.move(floorNumber, this.freeFloor);
+        }, choosenElevator.timer - currentTime);
+        choosenElevator.timer = totalTime;
+        
     }
-  };
-  freeFloor = (floorNumber: number) => {
-    this.floors[floorNumber].button.style.color = 'hsla(0, 0%, 20%, 1)'
-    this.floors[floorNumber].isWaiting = false;
-  };
+
+    this.floors[floorNumber].startTimer(totalTime);
+};
+freeFloor = (floorNumber: number) => {
+  this.floors[floorNumber].button.style.color = 'hsla(0, 0%, 20%, 1)';
+  this.floors[floorNumber].isWaiting = false;
+  this.floors[floorNumber].expectedTime = null;
+};
 }
 
 
