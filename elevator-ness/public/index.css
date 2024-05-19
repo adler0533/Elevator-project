@@ -28,6 +28,7 @@
 }
 
 .floor {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -44,9 +45,8 @@
 }
 
 .timer {
-  /* position: absolute; */
+  position: absolute;
   border-color: #000000;
-  /* background-color: yellow; */
   right: 10px;
   font-size: 30px;
   font-weight: normal;

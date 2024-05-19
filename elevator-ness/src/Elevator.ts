@@ -24,7 +24,6 @@ export default class Elevator {
     freeElevator: (floorNumber: number) => void
   ) => {
     let gap = Math.abs(this.currentFloor - floorRequest);
-    console.log("gap" + gap + " floorRequest " + floorRequest);
     this.elevatorDiv.style.transition = `transform ${
       gap * SETTINGS.elevatorSpeed
     }s ease`;

@@ -43,7 +43,7 @@ export default class Floor {
       clearInterval(this.timerInterval!);
       this.timerElement.textContent = "";
     } else {
-      const seconds = Math.ceil(remainingTime / 1000);
+      const seconds = Math.ceil(remainingTime / SETTINGS.milliSecond);
       this.timerElement.textContent = seconds.toString();
     }
   }
