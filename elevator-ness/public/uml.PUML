@@ -1,49 +1,60 @@
-@startuml elevators
-skinparam titleFontSize 16
+@startuml
 
-title Elevator System Specification
+!define TS_TYPE(type) class type << (T,#FF7700) >>
 
-package "Elevator System" {
-    class Building {
-        -floors: Floor[]
-        -elevators: Elevator[]
-        +constructor(numberOfFloors, numberOfElevators)
-        +chooseElevator(floorNum, currentTime): Elevator
-        +callElevator(floorNumber)
-        -freeFloor(floorNumber)
-    }
+TS_TYPE(Building)
+TS_TYPE(Floor)
+TS_TYPE(Elevator)
+TS_TYPE(Settings)
+TS_TYPE(BuildingFactory)
 
-    class Floor {
-        -floorNumber: number
-        -isWaiting: boolean
-        -floorDiv: HTMLDivElement
-        -lineDiv: HTMLDivElement
-        -button: HTMLButtonElement
-        -expectedElevatorArrivalTime: number | null
-        -timerElement: HTMLSpanElement
-        -timerInterval: ReturnType<typeof setInterval> | null
-        +constructor(floorNum, callElevator)
-        -updateTimer()
-        +startTimer(arrivalTime)
-    }
+Building : - floors : Floor[]
+Building : - elevators : Elevator[]
+Building : - buldingDiv : HTMLDivElement
+Building : - floorsDiv : HTMLDivElement
+Building : - elevatorsDiv : HTMLDivElement
+Building : + constructor(numberOfFloors: number, numberOfElevators: number)
+Building : + chooseElevator(floorNum: number, currentTime: number) : Elevator
+Building : + callElevator(floorNumber: number)
+Building : + freeFloor(floorNumber: number)
 
-    class Elevator {
-        -currentFloor: number
-        -ID: number
-        -destination: number
-        -timer: number
-        -elevatorDiv: HTMLImageElement
-        -audio: HTMLAudioElement
-        +constructor(id)
-        +move(floorRequest, freeElevator)
-    }
+Elevator : - ID : number
+Elevator : - currentFloor : number
+Elevator : - destination : number
+Elevator : - timer : number
+Elevator : - elevatorDiv : HTMLImageElement
+Elevator : - audio : HTMLAudioElement
+Elevator : + constructor(id: number)
+Elevator : + move(floorRequest: number, freeElevator: (floorNumber: number) => void)
 
-    Building *-- Floor
-    Building *-- Elevator
+Floor : - floorNumber : number
+Floor : - isWaiting : boolean
+Floor : - floorDiv : HTMLDivElement
+Floor : - lineDiv : HTMLDivElement
+Floor : - button : HTMLButtonElement
+Floor : - timerElement : HTMLSpanElement
+Floor : - expectedTime : number | null
+Floor : - timerInterval : ReturnType<typeof setInterval> | null
+Floor : + constructor(floorNum: number, callElevator: (floorNumber: number) => void)
+Floor : + updateTimer()
+Floor : + startTimer(arrivalTime: number)
+
+class Settings {
+  + elevatorSpeed : number
+  + elevatorTravelTime : number
+  + doorOpenTime : number
+  + elavatorMovement : number
+  + maxFloors : number
+  + timerInterval : number
 }
 
-Building -> Elevator : chooseElevator()
-Building --> Elevator : callElevator()
-Elevator -> Floor : freeFloor()
+BuildingFactory : + createBuilding(numberOfFloors: number, numberOfElevators: number) : Building
+
+Building --> Floor
+Building --> Elevator
+Building --> Settings
+Elevator --> Settings
+Floor --> Settings
+BuildingFactory --> Building
 
 @enduml

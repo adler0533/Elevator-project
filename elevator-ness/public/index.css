@@ -45,11 +45,12 @@
 
 .timer {
   /* position: absolute; */
-  background-color: yellow;
+  border-color: #000000;
+  /* background-color: yellow; */
   right: 10px;
   font-size: 30px;
   font-weight: normal;
-  color: #555;
+  color: yellow;
 }
 
 .blackline {
