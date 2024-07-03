@@ -11,23 +11,12 @@ export default class Building {
   elevatorsDiv: HTMLDivElement = document.createElement("div");
 
   constructor(numberOfFloors: number, numberOfElevators: number) {
-    for (let i = 0; i <= numberOfFloors; i++) {
-      const floor: Floor = new Floor(i, this.callElevator);
-      this.floors.push(floor);
-      if (i != 0) {
-        this.floorsDiv.appendChild(floor.lineDiv);
-      }
-      this.floorsDiv.appendChild(floor.floorDiv);
-    }
+    
+    this.createFloors(numberOfFloors);
+    this.createElevators(numberOfElevators);
+
     this.floorsDiv.className = "floors";
-
-    for (let i = 0; i < numberOfElevators; i++) {
-      const elevators = new Elevator(i);
-      this.elevators.push(elevators);
-      this.elevatorsDiv.appendChild(elevators.elevatorDiv);
-    }
     this.elevatorsDiv.className = "shaft";
-
     this.buldingDiv.className = "building";
 
     this.buldingDiv.appendChild(this.floorsDiv);
@@ -36,6 +25,25 @@ export default class Building {
     const screen = document.getElementById("screen");
     if (screen) {
       screen.appendChild(this.buldingDiv);
+    }
+  }
+
+  private createElevators(numberOfElevators: number) {
+    for (let i = 0; i < numberOfElevators; i++) {
+      const elevators = new Elevator(i);
+      this.elevators.push(elevators);
+      this.elevatorsDiv.appendChild(elevators.elevatorDiv);
+    }
+  }
+
+  private createFloors(numberOfFloors: number) {
+    for (let i = 0; i <= numberOfFloors; i++) {
+      const floor: Floor = new Floor(i, this.callElevator);
+      this.floors.push(floor);
+      if (i != 0) {
+        this.floorsDiv.appendChild(floor.lineDiv);
+      }
+      this.floorsDiv.appendChild(floor.floorDiv);
     }
   }
 

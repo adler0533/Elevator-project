@@ -6,5 +6,3 @@ export default class BuildingFactory {
   }
 }
 
-const building1 = BuildingFactory.createBuilding(20, 3);
-const building2 = BuildingFactory.createBuilding(5, 1);
