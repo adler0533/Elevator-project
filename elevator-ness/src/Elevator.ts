@@ -1,6 +1,8 @@
 import { SETTINGS } from "./Settings";
+import type { IElevator } from './Interface';
 
-export default class Elevator {
+// Represents an elevator in a building.
+export default class Elevator implements IElevator {
   ID: number;
   currentFloor: number = 0;
   destination: number = 0;
@@ -9,6 +11,10 @@ export default class Elevator {
   elevatorDiv: HTMLImageElement = document.createElement("img");
   audio: HTMLAudioElement = document.createElement("audio");
 
+  /**
+   * Creates a new instance of an elevator.
+   * @param id - The unique identifier of the elevator.
+   */
   constructor(id: number) {
     this.ID = id;
 
@@ -19,6 +25,11 @@ export default class Elevator {
     this.audio.controls = true;
   }
 
+  /**
+  * Moves the elevator to a requested floor.
+  * @param floorRequest - The number of the requested floor.
+  * @param freeElevator - Callback function to be called when the elevator reaches its destination.
+  */
   move = (
     floorRequest: number,
     freeElevator: (floorNumber: number) => void

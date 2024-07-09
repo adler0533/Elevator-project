@@ -1,6 +1,8 @@
 import { SETTINGS } from "./Settings";
+import type { IFloor } from './Interface';
 
-export default class Floor {
+// Represents a floor in a building.
+export default class Floor implements IFloor {
   floorNumber: number;
   isWaiting: boolean = false;
   
@@ -12,6 +14,11 @@ export default class Floor {
   expectedTime: number | null = null;
   timerInterval: ReturnType<typeof setInterval> | null = null;
 
+  /**
+   * Creates a new instance of a floor.
+   * @param floorNum - The floor number.
+   * @param callElevator - Function to call an elevator.
+   */
   constructor(floorNum: number, callElevator: (floorNumber: number) => void) {
     this.floorNumber = floorNum;
     this.floorDiv.className = "floor";
@@ -31,6 +38,9 @@ export default class Floor {
     this.floorDiv.appendChild(this.timerElement);
   }
 
+  /**
+   * Updates the timer displaying the waiting time for the elevator.
+   */
   updateTimer() {
     if (this.expectedTime === null) {
       this.timerElement.textContent = "";
@@ -48,6 +58,10 @@ export default class Floor {
     }
   }
 
+   /**
+   * Starts a new timer for the estimated arrival time of the elevator.
+   * @param arrivalTime - The estimated arrival time (in milliseconds).
+   */
   startTimer(arrivalTime: number) {
     this.expectedTime = arrivalTime;
     this.timerInterval = setInterval(() => this.updateTimer(), SETTINGS.elevatorTravelTime);

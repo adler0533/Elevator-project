@@ -2,11 +2,13 @@ import { SETTINGS } from "./Settings";
 import Floor from "./Floor";
 import Elevator from "./Elevator";
 
+
+// Represents a building with multiple floors and elevators.
 export default class Building {
   floors: Floor[] = [];
   elevators: Elevator[] = [];
 
-  buldingDiv: HTMLDivElement = document.createElement("div");
+  buildingDiv: HTMLDivElement = document.createElement("div");
   floorsDiv: HTMLDivElement = document.createElement("div");
   elevatorsDiv: HTMLDivElement = document.createElement("div");
 
@@ -17,22 +19,22 @@ export default class Building {
 
     this.floorsDiv.className = "floors";
     this.elevatorsDiv.className = "shaft";
-    this.buldingDiv.className = "building";
+    this.buildingDiv.className = "building";
 
-    this.buldingDiv.appendChild(this.floorsDiv);
-    this.buldingDiv.appendChild(this.elevatorsDiv);
+    this.buildingDiv.appendChild(this.floorsDiv);
+    this.buildingDiv.appendChild(this.elevatorsDiv);
 
     const screen = document.getElementById("screen");
     if (screen) {
-      screen.appendChild(this.buldingDiv);
+      screen.appendChild(this.buildingDiv);
     }
   }
 
   private createElevators(numberOfElevators: number) {
     for (let i = 0; i < numberOfElevators; i++) {
-      const elevators = new Elevator(i);
-      this.elevators.push(elevators);
-      this.elevatorsDiv.appendChild(elevators.elevatorDiv);
+      const elevator = new Elevator(i);
+      this.elevators.push(elevator);
+      this.elevatorsDiv.appendChild(elevator.elevatorDiv);
     }
   }
 
@@ -47,6 +49,12 @@ export default class Building {
     }
   }
 
+  /**
+   * Chooses the most appropriate elevator for a call from a specific floor.
+   * @param floorNum - The floor number from which the elevator was called.
+   * @param currentTime - The current time (in milliseconds).
+   * @returns The chosen elevator.
+   */
   public chooseElevator(floorNum: number, currentTime: number): Elevator {
     let minTime: number = Infinity;
     let elevatorID: number = 0;
@@ -63,6 +71,10 @@ export default class Building {
     return elevator;
   }
 
+  /**
+   * Handles an elevator call from a specific floor.
+   * @param floorNumber - The floor number from which the elevator was called.
+   */
   callElevator = (floorNumber: number) => {
     let currentTime: number = Date.now();
 
